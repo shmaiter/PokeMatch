@@ -1,0 +1,60 @@
+@font-face {
+    font-family: pokemon;
+    src: url(pokemon.ttf);
+}
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+.container {
+    font-family: pokemon;
+    letter-spacing: 5px;
+    margin: 0 auto;
+    min-width: 800px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+#game {
+    display: grid;
+    grid-template-columns: repeat(4, 160px);
+    grid-gap: 15px;
+}
+
+.card {
+    box-shadow: 0 3px 10px rgba(38, 38, 38, 0.9);
+    border-radius: 10px;
+    position: relative;
+    transform-style: preserve-3d;
+    overflow: hidden;
+}
+
+.front,
+.back {
+    height: 100%;
+    width: 100%;
+}
+
+.front {
+    background-image: url("./pokeball.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+}
