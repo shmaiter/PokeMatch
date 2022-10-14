@@ -11,8 +11,9 @@
     font-family: pokemon;
     letter-spacing: 5px;
     gap: 10px;
-    max-width: 800px;
+    max-width: 670px;
     margin: 0 auto;
+    /* border: #c62828 1px solid; */
 }
 
 header {
@@ -20,11 +21,17 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin: 0;
+    position: relative;
 }
 
 h1 {
     font-size: 54px;
     color: red;
+    margin: 0;
+}
+h1 > span {
+    color: rgb(249, 212, 28);
 }
 
 #game {
@@ -78,4 +85,7 @@ button {
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    position: absolute;
+    bottom: 40px;
+    right: 0;
 }
