@@ -1,6 +1,9 @@
 const pokeAPIBaseUrl = "https://pokeapi.co/api/v2/pokemon/";
 const game = document.getElementById("game");
 
+let isPaused = false;
+let firsPick;
+let match = 0;
 const colors = {
     fire: "#FDDFDF",
     grass: "#DEFDE0",
@@ -58,8 +61,43 @@ const displayPokemons = (pokemons) => {
 const clickCard = (event) => {
     const pokemonCard = event.currentTarget;
     [back, front] = getFrontAndBackFromCard(pokemonCard);
-    back.classList.toggle("rotated");
-    front.classList.toggle("rotated");
+
+    // Retain user from clickin on the same card or other cards.
+    if (front.classList.contains("rotated") || isPaused) return;
+    // Not allow to click in any other card
+    isPaused = true;
+
+    // Rotate card
+    rotateElements([front, back]);
+
+    if (!firsPick) {
+        firsPick = pokemonCard;
+        // Allow clicking in cards
+        isPaused = false;
+    } else {
+        const firsPokemonName = firsPick.dataset.pokename;
+        const secondPokemonName = pokemonCard.dataset.pokename;
+        if (firsPokemonName !== secondPokemonName) {
+            const [firstPickFront, firstPickBack] = getFrontAndBackFromCard(firsPick);
+            setTimeout(() => {
+                rotateElements([front, back, firstPickFront, firstPickBack]);
+                firstPick = null;
+                isPaused = false;
+            }, 500);
+        } else {
+            match++;
+            if (match === 8) {
+                console.log("Winner");
+            }
+            firstPick = null;
+            isPaused = false;
+        }
+    }
+};
+
+const rotateElements = (elements) => {
+    if (typeof elements !== "object" || !elements.length) return;
+    elements.forEach((element) => element.classList.toggle("rotated"));
 };
 
 const getFrontAndBackFromCard = (card) => {
@@ -68,10 +106,17 @@ const getFrontAndBackFromCard = (card) => {
     return [back, front];
 };
 
-const resetGame = async () => {
-    const pokemons = await loadPokemons();
-    // attach a copy of the original array, to match in the game
-    displayPokemons([...pokemons, ...pokemons]);
+const resetGame = () => {
+    game.innerHTML = "";
+    isPaused = true;
+    match = 0;
+    firsPick = null;
+    setTimeout(async () => {
+        const pokemons = await loadPokemons();
+        // attach a copy of the original array, to match in the game
+        displayPokemons([...pokemons, ...pokemons]);
+        isPaused = false;
+    }, 200);
 };
 
 resetGame();
