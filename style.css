@@ -24,6 +24,7 @@ header {
 
 h1 {
     font-size: 54px;
+    color: red;
 }
 
 #game {
@@ -53,6 +54,11 @@ h1 {
     transition: transform 0.5s;
 }
 
+.back > h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
 .front {
     background-image: url("./pokeball.png");
     background-position: center;
@@ -62,4 +68,14 @@ h1 {
 
 .rotated {
     transform: rotateY(180deg);
+}
+
+button {
+    font-size: 18px;
+    background-color: #c62828;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
