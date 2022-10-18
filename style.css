@@ -14,16 +14,24 @@
 header {
     max-width: 970px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: flex-end;
     margin: 0;
+    /* line-height: 8rem; */
 }
 
-h1 {
+h1,
+span {
     font-size: 3rem;
     color: red;
     margin: 0;
 }
+
+#clock span {
+    color: rgba(0, 0, 0, 0.171);
+    line-height: 8rem;
+}
+
 h1 > span {
     color: rgb(249, 212, 28);
 }
@@ -63,7 +71,7 @@ footer {
     justify-content: center;
     position: absolute;
     backface-visibility: hidden;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s;
 }
 
 .back > h2 {
@@ -93,8 +101,15 @@ button {
     margin-top: 10px;
 }
 
-@media only screen and (max-width: 310px) {
+@media only screen and (max-width: 650px) {
     .container {
         padding: 0 5px;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 2rem;
     }
 }

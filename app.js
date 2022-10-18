@@ -136,12 +136,15 @@ const getFrontAndBackFromCard = (card) => {
     return [back, front];
 };
 
-const resetGame = () => {
+const resetSettings = () => {
     clock("reset");
     game.innerHTML = "";
     isPaused = true;
     matches = 0;
     firstPick = null;
+};
+
+const resetGame = () => {
     setTimeout(async () => {
         const pokemons = await loadPokemons();
         // attach a copy of the original array, to matches in the game
