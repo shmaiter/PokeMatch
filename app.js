@@ -21,11 +21,19 @@ const colors = {
     fighting: "#E6E0D4",
     normal: "#F5F5F5",
 };
-const loadPokemons = async () => {
+
+const setRange = () => {
+    const pokemonAmount = document.querySelector("#pokemonAmount");
+    let range = parseInt(pokemonAmount.options[pokemonAmount.selectedIndex].text);
+    console.log(range);
+    resetGame(range);
+};
+
+const loadPokemons = async (range) => {
     // Set() only store unique values
     const randomIds = new Set();
     // Call random pokemons every time you play, but only 8 at the time
-    while (randomIds.size < 9) {
+    while (randomIds.size < range) {
         const randomNumber = Math.ceil(Math.random() * 150);
         randomIds.add(randomNumber);
     }
@@ -144,9 +152,10 @@ const resetSettings = () => {
     firstPick = null;
 };
 
-const resetGame = () => {
+const resetGame = (range = 9) => {
+    resetSettings();
     setTimeout(async () => {
-        const pokemons = await loadPokemons();
+        const pokemons = await loadPokemons(range);
         // attach a copy of the original array, to matches in the game
         displayPokemons([...pokemons, ...pokemons]);
         isPaused = false;

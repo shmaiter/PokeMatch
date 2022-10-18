@@ -20,7 +20,18 @@
             </div>
         </header>
         <div id="game"></div>
-        <footer><button onclick="resetGame()">Reset</button></footer>
+        <footer>
+            <select id="pokemonAmount" onchange="setRange()">
+                <option disabled selected hidden>
+                    Range
+                </option>
+                <option>9</option>
+                <option>18</option>
+                <option>36</option>
+                <option>72</option>
+            </select>
+            <button onclick="resetGame()">Reset</button>
+        </footer>
     </div>
     <script src="app.js"></script>
 </body>

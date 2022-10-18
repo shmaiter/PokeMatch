@@ -35,9 +35,7 @@ span {
 h1 > span {
     color: rgb(249, 212, 28);
 }
-footer {
-    width: min-content;
-}
+
 #game {
     max-width: 970px;
     /* display: grid;
@@ -90,7 +88,8 @@ footer {
     transform: rotateY(180deg);
 }
 
-button {
+button,
+select {
     font-size: 1.5rem;
     background-color: #c62828;
     color: white;
