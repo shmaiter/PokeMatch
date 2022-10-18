@@ -4,48 +4,53 @@
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
+    margin: 0 auto;
     font-family: pokemon;
     letter-spacing: 5px;
-    gap: 10px;
-    max-width: 670px;
-    margin: 0 auto;
-    /* border: #c62828 1px solid; */
+    max-width: 952px;
+    min-width: 310px;
 }
 
 header {
+    max-width: 970px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     margin: 0;
-    position: relative;
 }
 
 h1 {
-    font-size: 54px;
+    font-size: 3rem;
     color: red;
     margin: 0;
 }
 h1 > span {
     color: rgb(249, 212, 28);
 }
-
+footer {
+    width: min-content;
+}
 #game {
-    display: grid;
-    grid-template-columns: repeat(4, 160px);
-    grid-template-rows: repeat(4, 160px);
-    grid-gap: 10px;
+    max-width: 970px;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-rows: repeat(3, 130px);
+    grid-gap: 10px; */
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: center;
+    gap: 10px;
 }
 .card {
+    width: 150px;
+    height: 150px;
     box-shadow: 0 3px 10px rgba(200, 200, 200, 0.9);
     border-radius: 10px;
     position: relative;
     transform-style: preserve-3d;
     overflow: hidden;
+    cursor: pointer;
+    /* margin-bottom: 10px; */
 }
 
 .front,
@@ -58,7 +63,7 @@ h1 > span {
     justify-content: center;
     position: absolute;
     backface-visibility: hidden;
-    transition: transform 0.5s;
+    transition: transform 0.5s ease;
 }
 
 .back > h2 {
@@ -78,14 +83,18 @@ h1 > span {
 }
 
 button {
-    font-size: 18px;
+    font-size: 1.5rem;
     background-color: #c62828;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    position: absolute;
-    bottom: 40px;
-    right: 0;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 310px) {
+    .container {
+        padding: 0 5px;
+    }
 }

@@ -4,6 +4,7 @@ const game = document.getElementById("game");
 let isPaused = false;
 let firstPick;
 let matches = 0;
+let intervalID;
 const colors = {
     fire: "#FDDFDF",
     grass: "#DEFDE0",
@@ -24,7 +25,7 @@ const loadPokemons = async () => {
     // Set() only store unique values
     const randomIds = new Set();
     // Call random pokemons every time you play, but only 8 at the time
-    while (randomIds.size < 8) {
+    while (randomIds.size < 9) {
         const randomNumber = Math.ceil(Math.random() * 150);
         randomIds.add(randomNumber);
     }
@@ -46,11 +47,11 @@ const displayPokemons = (pokemons) => {
             const color = colors[type];
             return `
 			<div class="card" style="background-color:${color}" onclick="clickCard(event)" data-pokename="${pokemon.name}">
-            <div class="front"></div>
-            <div class="back rotated" style="background-color:${color}">
-                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
-			    <h2>${pokemon.name}</h2>
-            </div>
+                <div class="front"></div>
+                <div class="back rotated" style="background-color:${color}">
+                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
+                    <h2>${pokemon.name}</h2>
+                </div>
 			</div>
 		`;
         })
@@ -58,7 +59,35 @@ const displayPokemons = (pokemons) => {
     game.innerHTML = pokemonsHTML;
 };
 
+const clock = (arg) => {
+    const minHTML = document.querySelector("#min");
+    const secHTML = document.querySelector("#sec");
+
+    let minCounter = 0;
+    let secCounter = 0;
+
+    if (arg === "start") {
+        intervalID = setInterval(() => {
+            secCounter++;
+            minHTML.innerHTML = minCounter.toString().padStart(2, "0") + ":";
+            secHTML.innerHTML = secCounter.toString().padStart(2, "0");
+            if (secCounter == 60) {
+                secCounter = 0;
+                minCounter++;
+            }
+        }, 1000);
+    } else {
+        clearInterval(intervalID);
+        intervalID = null;
+        minHTML.innerHTML = minCounter.toString().padStart(2, "0") + ":";
+        secHTML.innerHTML = secCounter.toString().padStart(2, "0");
+    }
+};
+
 const clickCard = (event) => {
+    if (!intervalID) {
+        clock("start");
+    }
     const pokemonCard = event.currentTarget;
     const [back, front] = getFrontAndBackFromCard(pokemonCard);
 
@@ -75,9 +104,9 @@ const clickCard = (event) => {
         // Allow clicking in cards
         isPaused = false;
     } else {
-        const firsPokemonName = firstPick.dataset.pokename;
-        const secondPokemonName = pokemonCard.dataset.pokename;
-        if (firsPokemonName !== secondPokemonName) {
+        const firstPokemon = firstPick.dataset;
+        const secondPokemon = pokemonCard.dataset;
+        if (firstPokemon.pokename !== secondPokemon.pokename) {
             const [firstPickFront, firstPickBack] = getFrontAndBackFromCard(firstPick);
             setTimeout(() => {
                 rotateElements([front, back, firstPickFront, firstPickBack]);
@@ -87,6 +116,7 @@ const clickCard = (event) => {
         } else {
             matches++;
             if (matches === 8) {
+                clearInterval(intervalID);
                 console.log("Winner");
             }
             firstPick = null;
@@ -106,7 +136,8 @@ const getFrontAndBackFromCard = (card) => {
     return [back, front];
 };
 
-const resetGame = async () => {
+const resetGame = () => {
+    clock("reset");
     game.innerHTML = "";
     isPaused = true;
     matches = 0;
