@@ -2,34 +2,36 @@
     font-family: pokemon;
     src: url(pokemon.ttf);
 }
-
+body {
+    margin: 0;
+    /* padding: 0 120px; */
+}
 .container {
     margin: 0 auto;
     font-family: pokemon;
     letter-spacing: 5px;
-    max-width: 952px;
+    max-width: 1290px;
     min-width: 310px;
 }
 
 header {
-    max-width: 970px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin: 0;
-    /* line-height: 8rem; */
 }
 
-h1,
-span {
+h1 {
     font-size: 3rem;
     color: red;
     margin: 0;
 }
 
 #clock span {
+    font-size: 3rem;
     color: rgba(0, 0, 0, 0.171);
     line-height: 8rem;
+    display: inline-block;
 }
 
 h1 > span {
@@ -37,26 +39,21 @@ h1 > span {
 }
 
 #game {
-    max-width: 970px;
-    /* display: grid;
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    grid-template-rows: repeat(3, 130px);
-    grid-gap: 10px; */
-    display: flex;
-    flex-flow: wrap row;
-    justify-content: center;
-    gap: 10px;
+    grid-auto-rows: min-content;
+    gap: 13px;
 }
 .card {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     box-shadow: 0 3px 10px rgba(200, 200, 200, 0.9);
     border-radius: 10px;
     position: relative;
     transform-style: preserve-3d;
     overflow: hidden;
     cursor: pointer;
-    /* margin-bottom: 10px; */
+    margin: 0 auto;
 }
 
 .front,
