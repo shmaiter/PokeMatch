@@ -85,12 +85,12 @@ h1 > span {
 }
 .pokemon {
     width: 130px;
+    height: 130px;
     margin: 0;
     position: relative;
 }
 .pokemon > .psyduck {
     width: 100%;
-    height: 130px;
     object-fit: cover;
     object-position: right top;
     /* transform: translateY(50px); */
@@ -111,6 +111,12 @@ select {
     border: none;
     cursor: pointer;
     margin-top: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+    .pokemon {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 650px) {
