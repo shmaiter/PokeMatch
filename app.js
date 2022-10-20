@@ -1,6 +1,6 @@
 const pokeAPIBaseUrl = "https://pokeapi.co/api/v2/pokemon/";
 const game = document.getElementById("game");
-
+let range = 9;
 const anchor = document.querySelector(".psyduck");
 const rekt = anchor.getBoundingClientRect();
 const anchorX = rekt.left + rekt.width / 2;
@@ -49,20 +49,19 @@ const colors = {
 
 const setRange = () => {
     const pokemonAmount = document.querySelector("#pokemonAmount");
-    let range = parseInt(pokemonAmount.options[pokemonAmount.selectedIndex].text);
-    console.log(range);
-    resetGame(range);
+    range = parseInt(pokemonAmount.options[pokemonAmount.selectedIndex].text);
+    resetGame();
 };
 
-const loadPokemons = async (range) => {
+const loadPokemons = async () => {
     // Set() only store unique values
     const randomIds = new Set();
     // Call random pokemons every time you play, but only 8 at the time
     while (randomIds.size < range) {
-        const randomNumber = Math.ceil(Math.random() * 150);
+        const randomNumber = Math.ceil(Math.random() * 144);
         randomIds.add(randomNumber);
     }
-
+    console.log(randomIds);
     // Create an array from the pokeApi promises.
     const pokePromises = [...randomIds].map((id) => fetch(pokeAPIBaseUrl + id));
     // Extract the responses
@@ -148,7 +147,7 @@ const clickCard = (event) => {
             }, 1000);
         } else {
             matches++;
-            if (matches === 8) {
+            if (matches === range) {
                 clearInterval(intervalID);
                 console.log("Winner");
             }
@@ -177,9 +176,9 @@ const resetSettings = () => {
     firstPick = null;
 };
 
-const resetGame = async (range = 9) => {
+const resetGame = async () => {
     resetSettings();
-    const pokemons = await loadPokemons(range);
+    const pokemons = await loadPokemons();
     // attach a copy of the original array, to matches in the game
     displayPokemons([...pokemons, ...pokemons]);
     isPaused = false;
