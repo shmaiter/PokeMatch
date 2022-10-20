@@ -177,14 +177,12 @@ const resetSettings = () => {
     firstPick = null;
 };
 
-const resetGame = (range = 9) => {
+const resetGame = async (range = 9) => {
     resetSettings();
-    setTimeout(async () => {
-        const pokemons = await loadPokemons(range);
-        // attach a copy of the original array, to matches in the game
-        displayPokemons([...pokemons, ...pokemons]);
-        isPaused = false;
-    }, 200);
+    const pokemons = await loadPokemons(range);
+    // attach a copy of the original array, to matches in the game
+    displayPokemons([...pokemons, ...pokemons]);
+    isPaused = false;
 };
 
 resetGame();
