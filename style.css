@@ -6,18 +6,32 @@ body {
     margin: 0 10px;
 }
 .container {
-    margin: 0 auto;
     font-family: pokemon;
+    margin: 0 auto;
     letter-spacing: 5px;
     max-width: 1290px;
     min-width: 310px;
+    min-height: calc(100vh - 70px);
 }
 
-header {
+header,
+footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin: 0;
+}
+
+footer {
+    height: 50px;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    color: gray;
+    display: flex;
+    justify-content: center;
+}
+
+footer > div {
+    min-width: min-content;
 }
 
 h1 {
@@ -42,6 +56,7 @@ h1 > span {
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     grid-auto-rows: min-content;
     gap: 13px;
+    margin-bottom: 10px;
 }
 .card {
     width: 130px;
@@ -110,7 +125,6 @@ select {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 @media only screen and (max-width: 900px) {
