@@ -3,8 +3,7 @@
     src: url(pokemon.ttf);
 }
 body {
-    margin: 0;
-    /* padding: 0 120px; */
+    margin: 0 10px;
 }
 .container {
     margin: 0 auto;
@@ -75,7 +74,7 @@ h1 > span {
 }
 
 .front {
-    background-image: url("./pokeball.png");
+    background-image: url("./images/pokeball.png");
     background-position: center;
     background-repeat: no-repeat;
     background-color: black;
@@ -83,6 +82,23 @@ h1 > span {
 
 .rotated {
     transform: rotateY(180deg);
+}
+.pokemon {
+    width: 130px;
+    margin: 0;
+    position: relative;
+}
+.pokemon > .psyduck {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    object-position: right top;
+    /* transform: translateY(50px); */
+}
+
+#eyes img {
+    position: absolute;
+    width: 13px;
 }
 
 button,
