@@ -11,6 +11,9 @@ document.addEventListener("mousemove", (e) => {
     const mouseY = e.clientY;
     const angleDeg = angle(mouseX, mouseY, anchorX, anchorY);
 
+    // const pokemon = document.querySelector(".pokemon");
+    // pokemon = style.transform = translateY("-60px");
+
     const eyes = document.querySelectorAll(".eye");
     eyes.forEach((eye) => {
         eye.style.transform = `rotate(${90 + angleDeg}deg)`;
