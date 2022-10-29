@@ -116,14 +116,18 @@ h1 > span {
 .pokemon {
     width: 120px;
     height: 120px;
-    margin: 0;
+    margin: 20px 0px 0 40px;
     position: relative;
+    transition: all 0.2s;
+}
+
+.pokemon:hover {
+    transform: translateY(60px);
 }
 .pokemon > .psyduck {
     width: 100%;
     object-fit: cover;
     object-position: right top;
-    /* transform: translateY(50px); */
 }
 
 #eyes img {
