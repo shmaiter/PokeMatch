@@ -20,6 +20,7 @@ body {
 
 body {
     margin: 0 10px;
+    background-image: url("./images/bg-pok-02.png");
 }
 .container {
     font-family: pokemon;
